@@ -277,8 +277,8 @@ const sections = [
   body('คู่มือนี้อธิบายวิธีการใช้งานเว็บไซต์คอสเมติก ครอบคลุมทั้งหน้าเว็บไซต์สาธารณะที่ลูกค้าใช้งาน และแผงผู้ดูแลระบบสำหรับเจ้าหน้าที่จัดการเนื้อหา'),
   new Paragraph({ spacing: { after: 160 } }),
   infoTable([
-    ['ที่อยู่เว็บไซต์',        'http://localhost:5173/'],
-    ['ที่อยู่แผงผู้ดูแล',      'http://localhost:5173/admin/login'],
+    ['ที่อยู่เว็บไซต์',        'https://cosmetic-website-six.vercel.app/'],
+    ['ที่อยู่แผงผู้ดูแล',      'https://cosmetic-website-six.vercel.app/admin/login'],
     ['ภาษาที่รองรับ',          'ภาษาไทย (TH) / ภาษาอังกฤษ (EN)'],
     ['เบราว์เซอร์ที่รองรับ',   'Chrome, Firefox, Edge (เวอร์ชันล่าสุด)'],
   ]),
@@ -417,7 +417,7 @@ const sections = [
   // ── 3. แผงผู้ดูแลระบบ ────────────────────────────────────────────────────
   h1('3. แผงผู้ดูแลระบบ'),
   body('แผงผู้ดูแลระบบให้เจ้าหน้าที่ที่ได้รับอนุญาตจัดการเนื้อหาทั้งหมดของเว็บไซต์ จำเป็นต้องมีชื่อผู้ใช้และรหัสผ่าน'),
-  note('ที่อยู่แผงผู้ดูแล: http://localhost:5173/admin/login'),
+  note('ที่อยู่แผงผู้ดูแล: https://cosmetic-website-six.vercel.app/admin/login'),
 
   // 3.1 เข้าสู่ระบบ
   h2('3.1  เข้าสู่ระบบ'),
@@ -425,7 +425,7 @@ const sections = [
   caption('รูปที่ 16: หน้าเข้าสู่ระบบผู้ดูแลระบบ'),
   new Paragraph({ spacing: { after: 120 } }),
   stepTable([
-    [1, 'ไปที่ http://localhost:5173/admin/login', 'หน้าเข้าสู่ระบบแสดงขึ้น'],
+    [1, 'ไปที่ https://cosmetic-website-six.vercel.app/admin/login', 'หน้าเข้าสู่ระบบแสดงขึ้น'],
     [2, 'กรอกชื่อผู้ใช้: admin',                  'พิมพ์ในช่องชื่อผู้ใช้'],
     [3, 'กรอกรหัสผ่าน: admin1234',                'พิมพ์รหัสผ่าน (แสดงเป็นจุด)'],
     [4, 'คลิก "เข้าสู่ระบบ"',                     'เข้าสู่แผงผู้ดูแล — หน้าจัดการแบนเนอร์'],
@@ -656,13 +656,13 @@ const sections = [
 
   h2('5.1  ที่อยู่เว็บไซต์'),
   infoTable([
-    ['เว็บไซต์สาธารณะ',     'http://localhost:5173/'],
-    ['แผงผู้ดูแลระบบ',      'http://localhost:5173/admin/login'],
-    ['จัดการแบนเนอร์',      'http://localhost:5173/admin/banners'],
-    ['จัดการหมวดหมู่',      'http://localhost:5173/admin/categories'],
-    ['จัดการสินค้า',         'http://localhost:5173/admin/products'],
-    ['ข้อความติดต่อ',        'http://localhost:5173/admin/contacts'],
-    ['ตั้งค่าเว็บไซต์',      'http://localhost:5173/admin/settings'],
+    ['เว็บไซต์สาธารณะ',     'https://cosmetic-website-six.vercel.app/'],
+    ['แผงผู้ดูแลระบบ',      'https://cosmetic-website-six.vercel.app/admin/login'],
+    ['จัดการแบนเนอร์',      'https://cosmetic-website-six.vercel.app/admin/banners'],
+    ['จัดการหมวดหมู่',      'https://cosmetic-website-six.vercel.app/admin/categories'],
+    ['จัดการสินค้า',         'https://cosmetic-website-six.vercel.app/admin/products'],
+    ['ข้อความติดต่อ',        'https://cosmetic-website-six.vercel.app/admin/contacts'],
+    ['ตั้งค่าเว็บไซต์',      'https://cosmetic-website-six.vercel.app/admin/settings'],
   ]),
 
   new Paragraph({ spacing: { after: 240 } }),

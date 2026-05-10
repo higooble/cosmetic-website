@@ -265,8 +265,8 @@ const sections = [
   body('คู่มือนี้อธิบายวิธีการใช้งานเว็บไซต์ Cosmetic ทั้งหน้าสาธารณะและแผงการจัดการสำหรับผู้ดูแลระบบ'),
   new Paragraph({ spacing: { after: 160 } }),
   infoTable([
-    ['Public URL',  'http://localhost:5173/'],
-    ['Admin URL',   'http://localhost:5173/admin/login'],
+    ['Public URL',  'https://cosmetic-website-six.vercel.app/'],
+    ['Admin URL',   'https://cosmetic-website-six.vercel.app/admin/login'],
     ['Languages',   'Thai (TH) / English (EN)'],
     ['Browser',     'Chrome, Firefox, Edge (latest version)'],
   ]),
@@ -390,14 +390,14 @@ const sections = [
   // ── 3. Admin Panel ────────────────────────────────────────────────────────
   h1('3. Admin Panel'),
   body('The admin panel allows authorised staff to manage all website content. Access requires a username and password.'),
-  note('Admin panel URL: http://localhost:5173/admin/login'),
+  note('Admin panel URL: https://cosmetic-website-six.vercel.app/admin/login'),
 
   // 3.1 Login
   h2('3.1  Login'),
   screenshotPlaceholder('TC-09-01.png — Admin login page'),
   new Paragraph({ spacing: { after: 120 } }),
   stepTable([
-    [1, 'Go to http://localhost:5173/admin/login', 'Login page shows with username and password fields'],
+    [1, 'Go to https://cosmetic-website-six.vercel.app/admin/login', 'Login page shows with username and password fields'],
     [2, 'Enter username: admin', 'Username typed in field'],
     [3, 'Enter password: admin1234', 'Password typed (hidden as dots)'],
     [4, 'Click "Login"', 'Redirected to Admin panel — Banners page'],
@@ -611,13 +611,13 @@ const sections = [
 
   h2('5.1  URLs'),
   infoTable([
-    ['Public Website',     'http://localhost:5173/'],
-    ['Admin Panel',        'http://localhost:5173/admin/login'],
-    ['Admin — Banners',    'http://localhost:5173/admin/banners'],
-    ['Admin — Categories', 'http://localhost:5173/admin/categories'],
-    ['Admin — Products',   'http://localhost:5173/admin/products'],
-    ['Admin — Contacts',   'http://localhost:5173/admin/contacts'],
-    ['Admin — Settings',   'http://localhost:5173/admin/settings'],
+    ['Public Website',     'https://cosmetic-website-six.vercel.app/'],
+    ['Admin Panel',        'https://cosmetic-website-six.vercel.app/admin/login'],
+    ['Admin — Banners',    'https://cosmetic-website-six.vercel.app/admin/banners'],
+    ['Admin — Categories', 'https://cosmetic-website-six.vercel.app/admin/categories'],
+    ['Admin — Products',   'https://cosmetic-website-six.vercel.app/admin/products'],
+    ['Admin — Contacts',   'https://cosmetic-website-six.vercel.app/admin/contacts'],
+    ['Admin — Settings',   'https://cosmetic-website-six.vercel.app/admin/settings'],
   ]),
 
   new Paragraph({ spacing: { after: 240 } }),
