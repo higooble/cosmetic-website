@@ -9,7 +9,7 @@ exports.getAll = async (req, res) => {
 
 exports.create = async (req, res) => {
   const { title_th, title_en, subtitle_th, subtitle_en, sort_order } = req.body;
-  const image_url = req.file ? `/uploads/${req.file.filename}` : null;
+  const image_url = req.file ? req.file.path : null;
   if (!image_url) return res.status(400).json({ message: 'Image required' });
 
   const [result] = await db.query(
@@ -22,7 +22,7 @@ exports.create = async (req, res) => {
 exports.update = async (req, res) => {
   const { id } = req.params;
   const { title_th, title_en, subtitle_th, subtitle_en, sort_order, is_active } = req.body;
-  const image_url = req.file ? `/uploads/${req.file.filename}` : null;
+  const image_url = req.file ? req.file.path : null;
 
   const fields = ['title_th=?','title_en=?','subtitle_th=?','subtitle_en=?','sort_order=?','is_active=?'];
   const values = [title_th, title_en, subtitle_th, subtitle_en, sort_order, is_active];

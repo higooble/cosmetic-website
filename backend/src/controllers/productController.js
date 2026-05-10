@@ -52,7 +52,7 @@ exports.create = async (req, res) => {
 
   const productId = result.insertId;
   if (req.files && req.files.length) {
-    const imageRows = req.files.map((f, i) => [productId, `/uploads/${f.filename}`, i === 0, i]);
+    const imageRows = req.files.map((f, i) => [productId, f.path, i === 0, i]);
     await db.query('INSERT INTO product_images (product_id,image_url,is_primary,sort_order) VALUES ?', [imageRows]);
   }
   res.status(201).json({ id: productId });
@@ -73,7 +73,7 @@ exports.update = async (req, res) => {
   if (req.files && req.files.length) {
     const [existing] = await db.query('SELECT COUNT(*) AS cnt FROM product_images WHERE product_id=?', [id]);
     const offset = existing[0].cnt;
-    const imageRows = req.files.map((f, i) => [id, `/uploads/${f.filename}`, false, offset + i]);
+    const imageRows = req.files.map((f, i) => [id, f.path, false, offset + i]);
     await db.query('INSERT INTO product_images (product_id,image_url,is_primary,sort_order) VALUES ?', [imageRows]);
   }
   res.json({ message: 'Updated' });
