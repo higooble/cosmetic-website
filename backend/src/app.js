@@ -14,7 +14,7 @@ app.use('/api', require('./routes/public'));
 app.use('/api/admin', require('./routes/admin'));
 
 app.use((err, req, res, next) => {
-  console.error(err.message);
+  console.error(err);
   res.status(err.status || 500).json({ message: err.message || 'Server error' });
 });
 
