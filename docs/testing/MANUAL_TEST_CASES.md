@@ -1,17 +1,35 @@
 # Manual Test Cases — Cosmetic Website
 
 **Project:** Cosmetic One-Page Website
-**Version:** 1.1.0
+**Version:** 1.2.0
 **Prepared by:** QA Engineer
-**Last Updated:** 2026-05-06
+**Last Updated:** 2026-05-10
+
+---
+
+## Environments
+
+| Environment | Frontend URL | Backend URL | Admin URL |
+|-------------|-------------|-------------|-----------|
+| **Production** | https://cosmetic-website-six.vercel.app | https://cosmetic-website-44p2.onrender.com | https://cosmetic-website-six.vercel.app/admin/login |
+| **Local** | http://localhost:5173 | http://localhost:3000 | http://localhost:5173/admin/login |
+
+> **Production note:** Render free tier sleeps after 15 min inactivity. First request may take ~30 seconds. Wait and retry if site appears unresponsive.
+
+## Default Admin Credentials
+
+| Field | Value |
+|-------|-------|
+| Username | `admin` |
+| Password | `admin1234` |
 
 ---
 
 ## How to Use This Document
 
-1. Open `http://localhost:5173/` in browser before testing
+1. Open target environment URL in browser before testing (see Environments table above)
 2. Work through each test case in order
-3. Capture screenshot after each step where noted 📸
+3. Capture screenshot after each step where noted 📸 — save to `screenshots/YYYY-MM-DD/`
 4. Mark result: ✅ Pass / ❌ Fail / ⏭ Skip
 5. Fill in `TEST_REPORT_TEMPLATE.md` with results
 
@@ -40,7 +58,7 @@
 
 ## TC-01 — Navigation Bar
 
-**Preconditions:** Site loaded at `http://localhost:5173/`
+**Preconditions:** Site loaded at target environment URL (Production: https://cosmetic-website-six.vercel.app or Local: http://localhost:5173)
 
 | ID | Step | Expected Result | Screenshot | Result |
 |----|------|----------------|-----------|--------|

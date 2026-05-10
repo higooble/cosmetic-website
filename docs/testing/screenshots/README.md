@@ -1,10 +1,24 @@
 # Screenshots Folder
 
+## Environments Tested
+
+| Date | Environment | Tester | Result |
+|------|-------------|--------|--------|
+| 2026-05-10 | Production (Vercel + Render + Aiven + Cloudinary) | QA | ✅ Pass |
+
+## Production URLs (2026-05-10)
+
+| Service | URL |
+|---------|-----|
+| Public site | https://cosmetic-website-six.vercel.app |
+| Admin panel | https://cosmetic-website-six.vercel.app/admin/login |
+| Backend API | https://cosmetic-website-44p2.onrender.com |
+
 ## Folder Structure
 
 ```
 screenshots/
-└── YYYY-MM-DD/          ← one folder per test cycle date
+└── YYYY-MM-DD/          ← one folder per test cycle date (env: local or production)
     ├── TC-01-01.png
     ├── TC-01-02.png
     ├── TC-03-01.png
