@@ -300,7 +300,97 @@ JWT_SECRET=<strong_random_secret>
 
 ---
 
-## 11. Color Theme Customization
+## 11. Production Deployment (Cloud — Free Tier)
+
+This project is deployed using free cloud services. No VPS required.
+
+### Live URLs
+
+| Service | URL |
+|---------|-----|
+| Frontend | https://cosmetic-website-six.vercel.app |
+| Backend API | https://cosmetic-website-44p2.onrender.com |
+| Admin Panel | https://cosmetic-website-six.vercel.app/admin/login |
+
+### Services Used
+
+| Role | Service | Free Tier Limits |
+|------|---------|-----------------|
+| Frontend hosting | Vercel | Unlimited deploys, 100 GB bandwidth/month |
+| Backend (Node.js) | Render | 750 hours/month, sleeps after 15 min inactivity |
+| Database (MySQL) | Aiven | 5 GB storage |
+| Image storage | Cloudinary | 25 GB storage, 25 GB bandwidth/month |
+
+### Default Admin Credentials
+
+| Field | Value |
+|-------|-------|
+| Username | `admin` |
+| Password | `admin1234` |
+
+> Change password after first login.
+
+### Render Environment Variables
+
+Set these in Render dashboard → your service → Environment tab:
+
+| Variable | Value |
+|----------|-------|
+| `DB_HOST` | Aiven MySQL host |
+| `DB_PORT` | Aiven MySQL port |
+| `DB_USER` | `avnadmin` |
+| `DB_PASSWORD` | Aiven MySQL password |
+| `DB_NAME` | `defaultdb` |
+| `DB_SSL` | `true` |
+| `JWT_SECRET` | Long random string |
+| `CLOUDINARY_CLOUD_NAME` | Your Cloudinary cloud name |
+| `CLOUDINARY_API_KEY` | Your Cloudinary API key |
+| `CLOUDINARY_API_SECRET` | Your Cloudinary API secret |
+
+### Vercel Environment Variables
+
+Set in Vercel dashboard → Settings → Environment Variables:
+
+| Variable | Value |
+|----------|-------|
+| `VITE_API_URL` | `https://cosmetic-website-44p2.onrender.com` |
+
+### Database Import
+
+Schema was imported to Aiven using:
+```bash
+cd backend
+node -e "
+const mysql = require('mysql2/promise');
+const fs = require('fs');
+async function run() {
+  const conn = await mysql.createConnection({
+    host: 'YOUR_AIVEN_HOST', port: YOUR_PORT,
+    user: 'avnadmin', password: 'YOUR_PASSWORD',
+    database: 'defaultdb', ssl: { rejectUnauthorized: false },
+    multipleStatements: true
+  });
+  const sql = fs.readFileSync('../database/schema.sql', 'utf8')
+    .replace(/CREATE DATABASE[^;]+;/, '')
+    .replace(/USE[^;]+;/, '');
+  await conn.query(sql);
+  await conn.end();
+}
+run();
+"
+```
+
+### Render Sleep Warning
+
+Render free tier sleeps after 15 minutes of inactivity. First request after sleep takes ~30 seconds to wake up. Upgrade to paid plan to avoid this.
+
+### Auto-Deploy
+
+Both Vercel and Render auto-deploy on every push to `main` branch on GitHub.
+
+---
+
+## 12. Color Theme Customization
 
 All colors are in `frontend/src/assets/styles/main.css`:
 
@@ -319,7 +409,7 @@ Change only these 6 variables to completely retheme the site.
 
 ---
 
-## 12. Scripts Reference
+## 13. Scripts Reference
 
 ### Backend & Frontend
 
