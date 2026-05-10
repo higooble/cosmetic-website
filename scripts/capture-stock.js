@@ -20,9 +20,37 @@ async function shotFull(name) {
   console.log('captured: ' + name + '.png (full)');
 }
 async function wait(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+async function waitForNoSpinner() {
+  // Wait for common loading indicators to disappear
+  try {
+    await page.waitForFunction(() => {
+      const spinners = document.querySelectorAll(
+        '[class*="loading"], [class*="spinner"], [class*="skeleton"], [class*="shimmer"], .animate-pulse, [aria-busy="true"]'
+      );
+      return spinners.length === 0;
+    }, { timeout: 10000 });
+  } catch(e) {}
+  await wait(500);
+}
+
+async function waitForTableData() {
+  // Wait for table rows or data cards to appear
+  try {
+    await page.waitForFunction(() => {
+      const rows = document.querySelectorAll('tbody tr, [class*="card"], [class*="item"], [class*="row"]');
+      return rows.length > 0;
+    }, { timeout: 10000 });
+  } catch(e) {}
+  await wait(800);
+}
+
 async function goto(route) {
-  await page.goto(BASE + route, { waitUntil: 'networkidle0', timeout: 30000 });
-  await wait(1500);
+  await page.goto(BASE + route, { waitUntil: 'networkidle0', timeout: 60000 });
+  await wait(2000);
+  await waitForNoSpinner();
+  await waitForTableData();
+  await wait(1000);
 }
 
 async function main() {
@@ -35,13 +63,16 @@ async function main() {
 
   // ── Login ────────────────────────────────────────────────────────────────────
   console.log('\n[1] Login page');
-  await goto('/auth');
+  await page.goto(BASE + '/auth', { waitUntil: 'networkidle0', timeout: 60000 });
+  await wait(2000);
   await shot('01-login');
 
   await page.type('input[type="email"]', 'admin@test.com');
   await page.type('input[type="password"]', '12345678');
   await page.click('button[type="submit"]');
+  await page.waitForNavigation({ waitUntil: 'networkidle0', timeout: 30000 }).catch(() => {});
   await wait(3000);
+  await waitForNoSpinner();
   console.log('Logged in. URL:', page.url());
 
   // ── Dashboard ────────────────────────────────────────────────────────────────
@@ -56,14 +87,15 @@ async function main() {
   await shot('03-products');
   await shotFull('03-products-full');
 
-  // Try clicking first product row
-  const firstRow = await page.$('tbody tr, .product-row, [class*="row"]');
+  // Click first row for detail
+  const firstRow = await page.$('tbody tr');
   if (firstRow) {
     await firstRow.click();
-    await wait(1000);
+    await wait(2000);
+    await waitForNoSpinner();
     await shot('03-product-detail');
     await page.keyboard.press('Escape');
-    await wait(500);
+    await wait(800);
   }
 
   // ── Customers ────────────────────────────────────────────────────────────────
@@ -78,19 +110,19 @@ async function main() {
   await shot('05-suppliers');
   await shotFull('05-suppliers-full');
 
-  // ── Inbound products ─────────────────────────────────────────────────────────
+  // ── Inbound ──────────────────────────────────────────────────────────────────
   console.log('\n[6] Inbound products');
   await goto('/inbounds-products');
   await shot('06-inbounds');
   await shotFull('06-inbounds-full');
 
-  // ── Outbound products ────────────────────────────────────────────────────────
+  // ── Outbound ─────────────────────────────────────────────────────────────────
   console.log('\n[7] Outbound products');
   await goto('/outbounds-products');
   await shot('07-outbounds');
   await shotFull('07-outbounds-full');
 
-  // ── Mobile views ─────────────────────────────────────────────────────────────
+  // ── Mobile ───────────────────────────────────────────────────────────────────
   console.log('\n[8] Mobile views');
   await page.setViewport({ width: 375, height: 812 });
 
